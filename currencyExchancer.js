@@ -29,9 +29,10 @@ getTime();
 
 async function getRates() {
   try {
-    // Add API KEY HERE
+    const keyJSON = await fetch("API_KEY.json");
+    const { api_key } = await keyJSON.json();
     const i = await fetch(
-      "https://api.freecurrencyapi.com/v1/latest?apikey=<GET YOUR KEY AT FREECURRENCYAPI.COM>"
+      `https://api.freecurrencyapi.com/v1/latest?apikey=${api_key}`
     );
     const data = await i.json();
     currencies.forEach(
